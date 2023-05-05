@@ -1,17 +1,17 @@
 package com.example.forecast.ui
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieDrawable
 import com.example.forecast.R
 import com.example.forecast.databinding.ActivityMainBinding
-import com.example.forecast.model.MyDate
+import com.example.forecast.model.MyTime
 import com.example.forecast.model.Weather
 import com.example.forecast.util.DateUtil
 import com.example.forecast.util.FormatText
 import com.example.forecast.util.WeatherAPIUtil
 import java.util.*
-import kotlin.math.exp
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
@@ -36,12 +36,21 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateUI(weather: Weather) {
         binding.tvDate.text = DateUtil().getDate()
+//        Toast.makeText(this@MainActivity, getTime(weather.sys.sunset.toLong()).toString(), Toast.LENGTH_SHORT).show()
+        //Check if the sky is clear or not
         if(weather.weather[0].main.contains("Clear")) {
-            if(parseTime(weather.dt.toLong()) >= parseTime(weather.sys.sunrise.toLong()) &&
-                    parseTime(weather.dt.toLong()) < parseTime(weather.sys.sunset.toLong())) {
-                setLottie(R.raw.sunny)
-            } else {
+            //Checking if current time is greater than sunrise time and less than  sunset time
+            val currentTime = getTime(weather.dt.toLong())
+            val currentTimeProd = currentTime.hour*60 + currentTime.minute
+            val sunriseTime = getTime(weather.sys.sunrise.toLong())
+            val sunriseTimeProd = sunriseTime.hour*60 + sunriseTime.minute
+            val sunsetTime = getTime(weather.sys.sunset.toLong())
+            val sunsetTimeProd = sunsetTime.hour*60 + sunsetTime.minute
+
+            if(!(currentTimeProd in sunsetTimeProd until sunriseTimeProd)) {
                 setLottie(R.raw.moon)
+            } else {
+                setLottie(R.raw.sunny)
             }
         } else if(weather.weather[0].main.contains("Rain")) {
             setLottie(R.raw.rain)
@@ -55,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvHumidity.text = "${weather.main.humidity}%"
         binding.tvFeltTemp.text = "${FormatText().roundOffDecimal(weather.main.feels_like - 273)}°C"
         binding.tvVisibility.text = "Visibility: ${weather.visibility/1000}km"
-        if(weather.main.temp - 273 > 30) {
+        if(weather.main.temp - 273 >= 28) {
             binding.tvTemp.setTextColor(resources.getColor(R.color.temp_warm))
             binding.text2.setTextColor(resources.getColor(R.color.temp_warm))
             binding.tvTemp.text = "${(weather.main.temp - 273).roundToInt()}"
@@ -79,9 +88,9 @@ class MainActivity : AppCompatActivity() {
         return "$hour:${expiry.minutes}"
     }
 
-    private fun getTime(dtIn: Long): MyDate {
+    private fun getTime(dtIn: Long): MyTime {
         val expiry = Date(dtIn * 1000)
-        return MyDate(expiry.hours.toLong(), expiry.minutes.toLong())
+        return MyTime(expiry.hours.toLong(), expiry.minutes.toLong())
     }
 
     private fun setLottie(resource: Int) {

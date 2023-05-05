@@ -1,6 +1,6 @@
 package com.example.forecast.model
 
-data class MyDate(
+data class MyTime(
     val hour: Long,
     val minute: Long
 )
