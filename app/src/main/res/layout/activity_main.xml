@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:padding="10dp"
+    tools:context=".ui.MainActivity">
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date"
+        android:textColor="@color/date_color"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="@string/location"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDate" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ltAnimation"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLocation"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/moon" />
+
+    <TextView
+        android:id="@+id/tvTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="@string/temp"
+        android:textColor="@color/white"
+        android:textSize="80dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ltAnimation"
+        app:layout_constraintStart_toEndOf="@+id/ltAnimation"
+        app:layout_constraintTop_toTopOf="@+id/ltAnimation"
+        app:layout_constraintVertical_bias="0.106" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/unit"
+        android:textColor="@color/white"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTemp"
+        app:layout_constraintStart_toEndOf="@+id/tvTemp"
+        app:layout_constraintTop_toTopOf="@+id/tvTemp"
+        app:layout_constraintVertical_bias="0.23" />
+
+    <TextView
+        android:id="@+id/tvWeatherDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/weather_descrip"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/ltAnimation"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/ltAnimation"
+        app:layout_constraintTop_toBottomOf="@+id/ltAnimation" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/innerLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWeatherDescription">
+
+        <View
+            android:id="@+id/innerLayout1View"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/inner_layout_bg"
+            app:layout_constraintBottom_toBottomOf="@id/innerLayout1"
+            app:layout_constraintEnd_toEndOf="@id/innerLayout1"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/innerLayout1"
+            app:layout_constraintTop_toTopOf="@id/innerLayout1"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tvTitleWind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/wind"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/innerLayout1"
+            app:layout_constraintTop_toTopOf="@id/innerLayout1" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/div1"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            app:dividerColor="#393F55"
+            app:layout_constraintBottom_toBottomOf="@id/innerLayout1"
+            app:layout_constraintStart_toEndOf="@+id/tvTitleWind"
+            app:layout_constraintTop_toTopOf="@id/innerLayout1" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/div2"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:orientation="vertical"
+            app:dividerColor="#393F55"
+            app:layout_constraintBottom_toBottomOf="@id/div1"
+            app:layout_constraintStart_toEndOf="@id/tvFeltTempTitle"
+            app:layout_constraintTop_toTopOf="@id/div1" />
+
+        <TextView
+            android:id="@+id/tvWindSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/wind_speed"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/innerLayout1"
+            app:layout_constraintEnd_toEndOf="@+id/tvTitleWind"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toStartOf="@+id/tvTitleWind"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleWind"
+            app:layout_constraintVertical_bias="0.055" />
+
+        <TextView
+            android:id="@+id/tvFeltTempTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/feels_like"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTitleWind"
+            app:layout_constraintStart_toStartOf="@id/div1"
+            app:layout_constraintTop_toTopOf="@+id/tvTitleWind" />
+
+        <TextView
+            android:id="@+id/tvFeltTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/feels_like_temp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvWindSpeed"
+            app:layout_constraintEnd_toEndOf="@id/tvFeltTempTitle"
+            app:layout_constraintStart_toStartOf="@id/tvFeltTempTitle"
+            app:layout_constraintTop_toTopOf="@id/tvWindSpeed" />
+
+        <TextView
+            android:id="@+id/tvHumidityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:text="@string/humidity"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvFeltTempTitle"
+            app:layout_constraintEnd_toEndOf="@id/innerLayout1"
+            app:layout_constraintStart_toEndOf="@+id/div2"
+            app:layout_constraintTop_toTopOf="@id/tvFeltTempTitle" />
+
+        <TextView
+            android:id="@+id/tvHumidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/humidity_per"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvFeltTemp"
+            app:layout_constraintEnd_toEndOf="@id/tvHumidityTitle"
+            app:layout_constraintStart_toStartOf="@id/tvHumidityTitle"
+            app:layout_constraintTop_toTopOf="@id/tvFeltTemp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvVisibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/visibility"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ltAnimation"
+        app:layout_constraintTop_toBottomOf="@+id/tvTemp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etSearchLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        app:boxStrokeColor="@color/white"
+        app:boxStrokeWidth="0.5dp"
+        app:endIconDrawable="@drawable/search"
+        app:endIconMode="custom"
+        app:endIconTint="@color/white"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toStartOf="@+id/tvDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint"
+            android:inputType="textPostalAddress"
+            android:textColor="@color/white"
+            android:textColorHint="@color/date_color"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvSunTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/sun_time"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ltAnimation"
+        app:layout_constraintTop_toBottomOf="@+id/tvVisibility" />
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:checkedButton="@id/cbToday"
+        app:layout_constraintTop_toBottomOf="@id/innerLayout1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RadioButton
+            android:id="@+id/cbToday"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/checkbox_background_selector"
+            android:button="@drawable/checkbox_button"
+            android:padding="10dp"
+            android:text="TODAY"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/cbTomorrow"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/innerLayout1" />
+
+        <RadioButton
+            android:id="@+id/cbTomorrow"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/checkbox_background_selector"
+            android:button="@drawable/checkbox_button"
+            android:padding="10dp"
+            android:text="TOMORROW"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/cbFuture"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cbToday"
+            app:layout_constraintTop_toBottomOf="@+id/innerLayout1" />
+
+        <RadioButton
+            android:id="@+id/cbFuture"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/checkbox_background_selector"
+            android:button="@drawable/checkbox_button"
+            android:padding="10dp"
+            android:text="3 Days"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cbTomorrow"
+            app:layout_constraintTop_toBottomOf="@+id/innerLayout1" />
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

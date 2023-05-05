@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Weather Now</string>
+    <string name="temp">30</string>
+    <string name="date">Friday, 28 April</string>
+    <string name="location">Bangalore, India</string>
+    <string name="unit">°C</string>
+    <string name="weather_descrip">Sunny</string>
+    <string name="wind">Wind</string>
+    <string name="wind_speed">30km/h</string>
+    <string name="feels_like">Feels like</string>
+    <string name="feels_like_temp">30°C</string>
+    <string name="humidity">Humidity</string>
+    <string name="humidity_per">80%</string>
+    <string name="visibility">8km</string>
+    <string name="hint">Search</string>
+    <string name="sun_time">2AM/9PM</string>
+</resources>
